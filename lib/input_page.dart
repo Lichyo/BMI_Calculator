@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'resuable_card.dart';
+import 'reusable_card.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'IconContainer.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -26,12 +28,20 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
+                    cardChild: IconContainer(
+                      icon: FontAwesomeIcons.mars,
+                      content: 'MALE',
+                    ),
                     color: cardColor,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     color: cardColor,
+                    cardChild: IconContainer(
+                      icon: FontAwesomeIcons.venus,
+                      content: 'FEMALE',
+                    ),
                   ),
                 ),
               ],
