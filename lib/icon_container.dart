@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'constants.dart';
 
 class IconContainer extends StatelessWidget {
-
   IconContainer({@required this.icon, @required this.content});
-
   final String content;
   final IconData icon;
 
@@ -22,9 +20,7 @@ class IconContainer extends StatelessWidget {
         ),
         Text(
           content,
-          style: TextStyle(
-            fontSize: 15.0,
-          ),
+          style: kLabelTextStyle,
         ),
       ],
     );
