@@ -18,3 +18,4 @@ Color kActiveCardColor = Color(0xFF1D1E33);
 Color kBottomContainerColor = Color(0xFFEB1555);
 Color kScaffoldBackgroundColor = Color(0xFF0A0E21);
 Color kGreyTextColor = Color(0xFF8D8E98);
+Color kLittleIconColor = Color(0xFF4C4F5E);

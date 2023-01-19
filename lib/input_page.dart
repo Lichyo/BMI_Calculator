@@ -5,11 +5,15 @@ import 'icon_container.dart';
 import 'constants.dart';
 
 int height = 170;
+int weight = 60;
+int age = 20;
 
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
 }
+
+enum CalculatorButton { minus, plus }
 
 enum Gender { male, female }
 
@@ -96,7 +100,7 @@ class _InputPageState extends State<InputPage> {
                     inactiveColor: kGreyTextColor,
                     min: minHeight,
                     max: maxHeight,
-                    onChanged: (double newValue){
+                    onChanged: (double newValue) {
                       setState(() {
                         height = newValue.round();
                       });
@@ -112,11 +116,61 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kLargeLabelTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: (){
+                                setState(() {
+                                  weight -= 1;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 30.0,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: (){
+                                setState(() {
+                                  weight += 1;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     color: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kLargeLabelTextStyle,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -130,5 +184,31 @@ class _InputPageState extends State<InputPage> {
         ],
       ),
     );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({@required this.icon, this.onPressed});
+  final IconData icon;
+  final Function onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      elevation: 8,
+      child: Icon(icon),
+      shape: CircleBorder(),
+      onPressed: onPressed,
+      fillColor: kLittleIconColor,
+      constraints: BoxConstraints.tightFor(height: 56.0, width: 56.0),
+    );
+  }
+}
+
+void updateWeight(CalculatorButton selectedButton) {
+  if (selectedButton == CalculatorButton.plus) {
+    weight += 1;
+  } else if (selectedButton == CalculatorButton.minus && weight > 0) {
+    weight -= 1;
   }
 }
