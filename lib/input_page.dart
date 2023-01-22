@@ -3,6 +3,8 @@ import 'reusable_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_container.dart';
 import 'constants.dart';
+import 'round_icon_button.dart';
+import 'package:bmi_calculator/bottom_button.dart';
 
 int height = 170;
 int weight = 60;
@@ -204,45 +206,14 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          BottomButton(
+            content: 'CALCULATE',
+            onPressed: () {
               Navigator.pushNamed(context, 'calculate_page');
             },
-            child: Container(
-              padding: EdgeInsets.only(bottom: 20),
-              alignment: Alignment.center,
-              child: Text(
-                'CALCULATE',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25.0,
-                ),
-              ),
-              height: 80.0,
-              width: double.infinity,
-              color: kBottomContainerColor,
-            ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({@required this.icon, this.onPressed});
-  final IconData icon;
-  final Function onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      elevation: 8,
-      child: Icon(icon),
-      shape: CircleBorder(),
-      onPressed: onPressed,
-      fillColor: kLittleIconColor,
-      constraints: BoxConstraints.tightFor(height: 56.0, width: 56.0),
     );
   }
 }
