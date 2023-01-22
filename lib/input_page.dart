@@ -132,9 +132,11 @@ class _InputPageState extends State<InputPage> {
                           children: [
                             RoundIconButton(
                               icon: FontAwesomeIcons.minus,
-                              onPressed: (){
+                              onPressed: () {
                                 setState(() {
-                                  weight -= 1;
+                                  if (weight > 0) {
+                                    weight -= 1;
+                                  }
                                 });
                               },
                             ),
@@ -143,7 +145,7 @@ class _InputPageState extends State<InputPage> {
                             ),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
-                              onPressed: (){
+                              onPressed: () {
                                 setState(() {
                                   weight += 1;
                                 });
@@ -169,6 +171,32 @@ class _InputPageState extends State<InputPage> {
                           age.toString(),
                           style: kLargeLabelTextStyle,
                         ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  if (age > 0) {
+                                    age -= 1;
+                                  }
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 30.0,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  age += 1;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -176,10 +204,24 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            height: 80.0,
-            width: double.infinity,
-            color: kBottomContainerColor,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, 'calculate_page');
+            },
+            child: Container(
+              padding: EdgeInsets.only(bottom: 20),
+              alignment: Alignment.center,
+              child: Text(
+                'CALCULATE',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25.0,
+                ),
+              ),
+              height: 80.0,
+              width: double.infinity,
+              color: kBottomContainerColor,
+            ),
           ),
         ],
       ),
