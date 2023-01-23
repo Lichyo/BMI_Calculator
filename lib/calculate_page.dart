@@ -1,10 +1,16 @@
+import 'package:bmi_calculator/input_page.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'bottom_button.dart';
+import 'calculate_brain.dart';
 
-class Calculate extends StatelessWidget {
-  // const Calculate({Key? key}) : super(key: key);
+class CalculatePage extends StatelessWidget {
+
+  CalculatePage({this.calc});
+
+  final CalculateBrain calc;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,9 +23,12 @@ class Calculate extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: Text(
-              'Your Result',
-              style: kTitleTextStyle,
+            child: Container(
+              padding: EdgeInsets.all(15),
+              child: Text(
+                'Your Result',
+                style: kTitleTextStyle,
+              ),
             ),
           ),
           Expanded(
@@ -31,15 +40,15 @@ class Calculate extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Normal',
+                    calc.getResult().toUpperCase(),
                     style: kResultTextStyle,
                   ),
                   Text(
-                    '18.2',
+                    calc.calculateBMI(),
                     style: kBMITextStyle,
                   ),
                   Text(
-                    'Your BMI result is quite low, you should eat more',
+                    calc.getInterpretation(),
                     style: kBodyTextStyle,
                     textAlign: TextAlign.center,
                   ),
@@ -50,7 +59,7 @@ class Calculate extends StatelessWidget {
           BottomButton(
             content: 'RE-CALCULATE',
             onPressed: () {
-              Navigator.pushNamed(context, 'input_page');
+              Navigator.pop(context);
             },
           ),
         ],

@@ -5,7 +5,10 @@ import 'icon_container.dart';
 import 'constants.dart';
 import 'round_icon_button.dart';
 import 'package:bmi_calculator/bottom_button.dart';
+import 'calculate_page.dart';
+import 'calculate_brain.dart';
 
+CalculateBrain calculateBrain;
 int height = 170;
 int weight = 60;
 int age = 20;
@@ -209,7 +212,15 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             content: 'CALCULATE',
             onPressed: () {
-              Navigator.pushNamed(context, 'calculate_page');
+              CalculateBrain calc = CalculateBrain(weight: weight, height: height);
+              print('Result : ' + calc.getResult());
+              print('BMI : ' + calc.calculateBMI());
+              print('Interpretation' + calc.getInterpretation());
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => CalculatePage(calc: calc,),
+                ),
+              );
             },
           ),
         ],
